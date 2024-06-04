@@ -14,12 +14,9 @@
     <link href="css/aos.css" rel="stylesheet">
     <!-- main style -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+
 </head>
 
 <body>
@@ -76,11 +73,11 @@
 
                     As a scholar and educator, Dr. Awofolaju is dedicated to fostering the next generation of engineers, imparting knowledge, and inspiring innovation in the field of electrical and electronic engineering.    
                 </p>
-                <div class="h-50"></div> <img src="img/Signature.svg" width="230" alt="" />
+                <div class="h-50"></div> <img src="img/signature.png" width="250px" class="img-responsive" alt="" />
                 <div class="h-50"></div>
             </div>
             <div class="col-md-6 about-img-div">
-                <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div>
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
                 <img src="img/my_picture.jpg" width="400" class="img-responsive" alt="" align="center" data-aos="fade-right" data-aos-delay="0" />
             </div>
         </div>
@@ -215,14 +212,16 @@
                 <div class="h-50"></div>
             </div>
             <div class="col-md-8" data-aos="fade-up">
-                <form class="contact-bg" id="contact-form" name="contact" >
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" />
-                    <input type="email" name="email" class="form-control" placeholder="Your E-mail" />
-                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" />
-                    <textarea name="message" class="form-control" placeholder="Your Message" style="height:120px"></textarea>
+           
+                <form class="contact-bg" >
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" />
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Your E-mail" />
+                    <input type="text" name="phone" class="form-control"  id="phone" placeholder="Phone Number" />
+                    <textarea name="message" class="form-control" placeholder="Your Message" id="message" style="height:120px"></textarea>
                     <button id="submit" type="submit" name="submit" class="btn btn-glance">Send</button>
-                 
+                  
                 </form>
+           
             </div>
         </div>
     </div>
@@ -235,11 +234,59 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/aos.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
+ 
+
+
+     
+    
+     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+     <script type="text/javascript">
+       (function() {
+         emailjs.init("q9Ik3GnV4wQyBhZPw");
+       })();
+       document.addEventListener('DOMContentLoaded', function() {
+         document.querySelector('form').addEventListener('submit', function(event) {
+           event.preventDefault(); // Prevent the default form submission
+     
+           // Collect form data
+           var name = document.getElementById('name').value;
+           var email = document.getElementById('email').value;
+           var phone = document.getElementById('phone').value;
+           var message = document.getElementById('message').value;
+     
+           // Send the email using EmailJS
+           emailjs.send('service_5ffwpuj', 'template_76h9gce', {
+             name: name,
+             email: email,
+             phone: phone,
+             message: message
+           })
+           .then(function(response) {
+             console.log('SUCCESS!', response.status, response.text);
+             Swal.fire({
+                 icon: 'success',
+                 title: 'Message Sent',
+                 text: 'Your message has been sent successfully!'
+             });
+         }, function(error) {
+             console.error('FAILED...', error);
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Message Failed',
+                 text: 'Failed to send message. Please try again later.'
+             });
+           })
+         });
+       });
+     </script>
+
+
 
     <!--  main script  -->
     <script src="js/custom.js"></script>
+
 </body>
 
 </html>

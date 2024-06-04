@@ -249,7 +249,7 @@ nav li {
 
 nav li a {
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: #444;
     font-size: 11px;
     font-weight: bold;
@@ -801,4 +801,12 @@ fieldset {
     nav li a {
         font-size: 10px;
     }
+}
+
+
+form>input{
+    margin: 10px 0px;
+}
+form button{
+    margin-top: 10px;
 }
